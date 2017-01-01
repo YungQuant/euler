@@ -5,8 +5,7 @@ struct data {
 	int length;
 	int seed;
 };
-
-int	collatz(int num)
+struct data collatz(int num)
 {
 	struct data data1;
 	data1.seed = num;
@@ -18,14 +17,16 @@ int	collatz(int num)
 		else
 			num = num * 3 + 1; data1.length++;
 	}
+	struct data *data1Pointer = &data1;
 	return data1;
 
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc == 1){
-		for (int i = 0; i < 1000000; i++){
+	if (argc == 2){
+		int n = atoi(argv[1]);
+		for (int i = 0; i < n; i++){
 			struct data data2 = collatz(i);
 			printf("%i %i\n", data2.length, data2.seed);}}
 	else
